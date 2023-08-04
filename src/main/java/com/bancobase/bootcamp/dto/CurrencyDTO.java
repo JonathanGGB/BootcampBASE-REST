@@ -1,8 +1,5 @@
 package com.bancobase.bootcamp.dto;
 
-import com.bancobase.bootcamp.dto.response.ExchangeRateResponse;
-import com.bancobase.bootcamp.dto.response.SymbolsNameResponse;
-
 import com.bancobase.bootcamp.schemas.CurrencySchema;
 import lombok.*;
 

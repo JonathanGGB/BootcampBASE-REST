@@ -3,7 +3,6 @@ package com.bancobase.bootcamp.services;
 import com.bancobase.bootcamp.dto.response.ExchangeRateResponse;
 import com.bancobase.bootcamp.dto.response.Symbol;
 import com.bancobase.bootcamp.dto.response.SymbolsNameResponse;
-import com.bancobase.bootcamp.exceptions.ServiceProviderException;
 import com.bancobase.bootcamp.http.APIExchangeRateClient;
 import com.bancobase.bootcamp.repositories.CurrencyRepository;
 import com.bancobase.bootcamp.schemas.CurrencySchema;
