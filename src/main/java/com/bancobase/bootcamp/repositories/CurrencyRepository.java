@@ -11,4 +11,5 @@ public interface CurrencyRepository extends JpaRepository<CurrencySchema, String
     List<CurrencySchema> findAll();
     long count();
     void deleteAll();
+    //List<CurrencySchema> findByNameOrSymbolOrValue(String name, String symbol, String value);
 }

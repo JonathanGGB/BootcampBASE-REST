@@ -1,13 +1,17 @@
 package com.bancobase.bootcamp.services;
 
-import com.bancobase.bootcamp.dto.*;
+import com.bancobase.bootcamp.dto.CustomerDTO;
+import com.bancobase.bootcamp.dto.CustomerInfoDTO;
 import com.bancobase.bootcamp.dto.request.PreCustomerInfo;
 import com.bancobase.bootcamp.exceptions.BusinessException;
 import com.bancobase.bootcamp.repositories.CustomerRepository;
-import com.bancobase.bootcamp.schemas.*;
+import com.bancobase.bootcamp.schemas.AccountSchema;
+import com.bancobase.bootcamp.schemas.CustomerSchema;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -20,11 +24,15 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerInfoDTO getCustomerById(Long customerId) {
-        Optional<CustomerSchema> person = customerRepository
-                .findById(customerId);
+    public CustomerDTO getCustomerById(@PathVariable Long customerId) {
+        Optional<CustomerSchema> customerOptional = customerRepository.findById(customerId);
 
-        return person.map(CustomerInfoDTO::getFromSchema).orElse(null);
+        if (customerOptional.isPresent()) {
+            CustomerSchema customerSchema = customerOptional.get();
+            return CustomerDTO.getFromSchema(customerSchema, customerSchema.getAccounts());
+        } else {
+            return null;
+        }
     }
 
     public List<CustomerInfoDTO> filterCustomersByName(String name) {

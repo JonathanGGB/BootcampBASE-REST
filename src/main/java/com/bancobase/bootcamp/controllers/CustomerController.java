@@ -32,6 +32,18 @@ public class CustomerController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
+    @GetMapping("/{customerId}")
+    @Operation(summary = "Get a customer by ID")
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long customerId) {
+        CustomerDTO customer = customerService.getCustomerById(customerId);
+
+        if (customer != null) {
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     @Operation(summary = "Create a new customer")
     public ResponseEntity<CustomerDTO> createCustomer(@RequestBody PreCustomerInfo information) {
